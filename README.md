@@ -19,5 +19,5 @@ The `Polynomial` class implements operations on polynomials with coefficients in
 Additional global functions include:
 * `operator+` and `operator*` for polynomial addition and multiplication
 * `mod` for computing the quotient and remainder for polynomial division
-* `operator/` and 'operator%` for division and modulus
+* `operator/` and `operator%` for division and modulus
 * `operator<<` and `operator>>` for outputting and inputting polynomials in a custom format
