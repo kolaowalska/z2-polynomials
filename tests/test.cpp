@@ -1,5 +1,5 @@
-#include "Z2.h"
-#include "Polynomial.h"
+#include "../Z2.h"
+#include "../include/z2_polynomials/Polynomial.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
