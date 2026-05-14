@@ -1,4 +1,4 @@
-#include "../Z2.h"
+#include "z2_polynomials/Z2.h"
 
 Z2::Z2() : value(0) {}
 

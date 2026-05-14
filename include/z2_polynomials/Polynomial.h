@@ -3,16 +3,15 @@
 
 #include "Z2.h"
 #include <iostream>
-#include <iostream>
 #include <sstream>
 #include <cstring>
 #include <string>
-#include <cstdlib>
 
 class Polynomial {
-public:
     unsigned int order;
     Z2* coefficients;
+
+public:
 
     Polynomial(); 
     Polynomial(unsigned int degree, Z2* coefficients);
