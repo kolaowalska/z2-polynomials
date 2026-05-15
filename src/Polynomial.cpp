@@ -23,7 +23,7 @@ Polynomial::~Polynomial() {
 
 Z2 &Polynomial::operator[](unsigned int index) const {
     if (index > degree()) {
-        std::cout << "Niepoprawny indeks wielomianu\n";
+        std::cout << "Invalid polynomial index\n";
         return coefficients[0];
     }
     return coefficients[index];
@@ -98,6 +98,10 @@ Polynomial &Polynomial::operator+=(const Polynomial &other) {
     optimizePolynomial(*this);
 
     return *this;
+}
+
+Polynomial &Polynomial::operator-=(const Polynomial &other) {
+    return *this += other; // subtraction = addition in Z2 (characteristic 2)
 }
 
 Polynomial &Polynomial::operator*=(const Polynomial &other) {
@@ -181,7 +185,7 @@ Polynomial operator*(const Polynomial &a, const Polynomial &b) {
 
 Polynomial operator/(const Polynomial &u, const Polynomial &v) {
     if (v.degree() == 0 && v[0] == 0) {
-        std::cout << "Dzielenie przez zero\n";
+        std::cout << "Division by zero\n";
         return u;
     }
 
@@ -204,7 +208,7 @@ Polynomial operator/(const Polynomial &u, const Polynomial &v) {
 
 void mod(const Polynomial u, const Polynomial v, Polynomial &q, Polynomial &r) {
     if (v == Polynomial()) {
-        std::cout << "Dzielenie przez zero\n";
+        std::cout << "Division by zero\n";
         return;
     }
 
@@ -216,7 +220,7 @@ void mod(const Polynomial u, const Polynomial v, Polynomial &q, Polynomial &r) {
 
 Polynomial operator%(const Polynomial &u, const Polynomial &v) {
     if (v == Polynomial()) {
-        std::cout << "Dzielenie przez zero\n";
+        std::cout << "Division by zero\n";
         return Polynomial();
     }
     Polynomial q;
@@ -294,12 +298,9 @@ void optimizePolynomial(Polynomial &polynomial) {
 
     if (diff == 0) return;
 
-    Polynomial *result;
-    if (polynomial.degree() - diff == -1) {
-        result = new Polynomial();
+    if (diff > (int)polynomial.degree()) {
+        polynomial = Polynomial();
     } else {
-        result = new Polynomial(polynomial.degree() - diff, polynomial.coefficients);
+        polynomial = Polynomial((unsigned int)((int)polynomial.degree() - diff), polynomial.coefficients);
     }
-    std::memcpy(&polynomial, result, sizeof(&result));
-    return;
 }

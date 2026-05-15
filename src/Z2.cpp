@@ -36,13 +36,13 @@ Z2& Z2::operator*=(const Z2& z2) {
 }
 
 Z2& Z2::operator-=(const Z2& z2) {
-    value = (value - z2.value) % 2;
+    value = (value + z2.value) % 2; // subtraction = addition in Z2 (characteristic 2)
     return *this;
 }
 
 Z2& Z2::operator/=(const Z2& z2) {
     if(z2.value == 0){
-        std::cout << "Dzielenie przez zero\n";
+        std::cout << "Division by zero\n";
     } else {
         value = (value * z2.value) % 2;
     }
@@ -100,6 +100,10 @@ bool operator==(int other, const Z2& z) {
 
 bool operator!=(int other, const Z2& z) {
     return (other % 2) != z.value;
+}
+
+bool operator==(const Z2& a, const Z2& b) {
+    return a.value == b.value;
 }
 
 bool operator!=(const Z2& z1, const Z2& z2) {
